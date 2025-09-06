@@ -36,10 +36,31 @@ function Board({xIsNext, squares, onPlay}) {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
 
+  const boardSize = 3;
+  const boardRows = Array(boardSize)
+    .fill(null)
+    .map((_, rowIndex) => (
+      <div className = "flex" key={rowIndex}>
+        {Array(boardSize)
+          .fill(null)
+          .map((_, colIndex) => {
+            const squareIndex = rowIndex * boardSize + colIndex;
+            return (
+              <Square
+                key={squareIndex}
+                value={squares[squareIndex]}
+                onSquareClick={() => handleClick(squareIndex)}
+              />
+            );
+          })
+        }
+      </div>
+    ));
   return (
-    <>
+    <div>
       <div className="status">{status}</div>
-      <div className="board-row">
+      <div>{boardRows}</div>
+      {/* <div className="board-row">
         <Square
           value={squares[0]}
           onSquareClick={() => handleClick(0)} 
@@ -80,8 +101,8 @@ function Board({xIsNext, squares, onPlay}) {
           value={squares[8]}
           onSquareClick={() => handleClick(8)} 
         />
-      </div>
-    </>
+      </div> */}
+    </div>
   );
 }
 
