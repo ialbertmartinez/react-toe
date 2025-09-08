@@ -65,8 +65,13 @@ function Board({xIsNext, squares, onPlay}) {
     ));
   return (
     <div>
-      <div className="status">{status}</div>
-      <div>{boardRows}</div>
+      <header className="status">
+        <h1>Re-Ac-Toe</h1>
+        <p>{status}</p>
+      </header>
+      <div className="board-container">
+        {boardRows}
+      </div>
       {/* <div className="board-row">
         <Square
           value={squares[0]}

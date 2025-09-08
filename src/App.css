@@ -1,19 +1,63 @@
+.game {
+   width: 500px;
+   height: 500px;
+   margin-inline: auto;
+
+}
+
+.board-container {
+   box-sizing: border-box; 
+   border-radius: 50px;
+   box-shadow: 0 4px 4px rgba(255,255,255,0.3);
+   margin-block: 40px;
+   width: 100%;
+   height: 500px;
+}
+.status {
+   /* margin-block-start: 20px; */
+   text-align: center;
+}
+
+h1 {
+   line-height: 2;;
+}
+
+button {
+   height: 166.6px;
+}
+
 .square {
-  text-align: center;
+   font-size: 3rem;
+   font-weight: 100;
   background-color: #141414;
-  /* border: 1px inset greenyellow; */
-  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #000;
   color: #efefef;
-  border-radius: none;
-  /* border: 1px solid #000; */
-  /* border-style: inset; */
- ;
+  border-radius: 0px;
+}
+
+/* ROUNDED CORNERS FOR GAME BOARD */
+div.flex:first-child > .square:nth-child(1) {
+   border-top-left-radius:50px;
+}
+
+div.flex:first-child > .square:nth-child(3) {
+   border-top-right-radius:50px;
+}
+
+div.flex:last-child > .square:nth-child(1) {
+   border-bottom-left-radius:50px;
+}
+
+div.flex:last-child > .square:nth-child(3) {
+   border-bottom-right-radius:50px;
 }
 
 .winning-square {
 background-color: greenYellow;
 color: #444;
 border: 1px solid #fff5a6;
+font-weight: bold;
 box-sizing: border-box;
 box-shadow: 
 inset 0 0 4px rgba(205, 236, 159, 0.794), 
