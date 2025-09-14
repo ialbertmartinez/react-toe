@@ -46,7 +46,7 @@ function Board({xIsNext, squares, onPlay}) {
   const boardRows = Array(boardSize)
     .fill(null)
     .map((_, rowIndex) => (
-      <div className = "flex" key={rowIndex}>
+      <div className="flex" key={rowIndex}>
         {Array(boardSize)
           .fill(null)
           .map((_, colIndex) => {
@@ -64,9 +64,10 @@ function Board({xIsNext, squares, onPlay}) {
       </div>
     ));
   return (
-    <div>
+    <>
       <header className="status">
         <h1>Re-Ac-Toe</h1>
+        <p className="subheader">tic-tac-toe made w/ React</p>
         <p>{status}</p>
       </header>
       <div className="board-container">
@@ -114,7 +115,7 @@ function Board({xIsNext, squares, onPlay}) {
           onSquareClick={() => handleClick(8)} 
         />
       </div> */}
-    </div>
+    </>
   );
 }
 
@@ -140,15 +141,15 @@ export default function Game() {
     if(move === currentMove) {
       description = `You are at move #${move}`;
       return (
-        <li key={move}>
-          {description}
+        <li className="move-list-item" key={move}>
+          <p>{description}</p>
         </li>
       );
     }
     description = move > 0 ? `Go to move #${move}` : 'Go to game start'; 
 
     return (
-      <li key={move}>
+      <li className="move-list-item" key={move}>
         {/* <p>You are at move # {move}</p> */}
         <button onClick={() => jumpTo(move)}>
           {description}
@@ -164,12 +165,12 @@ export default function Game() {
       </div> 
       {/* /.game-board */}
       <div className="game-info">
-        <button
+        <button className="sort-button"
           onClick={() => setIsSortAscending(!isSortAscending)}
         >
           Sort {isSortAscending ? 'descending' : 'ascending'}
         </button>
-        <ol>
+        <ol className="move-list">
           {sortedMoves}
         </ol>
       </div>
