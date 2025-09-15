@@ -9,12 +9,15 @@
 {
    box-sizing: border-box;
 }
-
+body {
+   width: fit-content;
+   margin-inline: auto;
+}
 .game
 {
    width: 1000px;
    height: 1000px;
-   gap: 40px;
+   gap: 80px;
    display: flex;
    flex-direction: row;
    align-items: flex-start;
@@ -44,6 +47,7 @@
    flex-flow: row nowrap;
 }
 
+
 .status
 {
    /* margin-block-start: 20px; */
@@ -52,13 +56,13 @@
 
 h1
 {
-   line-height: 1.5;
+   line-height: 0.25;
 }
 
 .subheader
 {
    font-variant: small-caps;
-   margin-block-end: 20px;
+   margin-block-end: 40px;
 }
 
 header p:not([class])
@@ -77,6 +81,7 @@ header p:not([class])
    border: 1px solid #000;
    color: #efefef;
    border-radius: 0px;
+   padding: 0;
 }
 
 .square:hover
@@ -121,10 +126,13 @@ div.flex:last-child>.square:nth-child(3)
       0 0 4px white
 }
 
-.game-info
-{
-   border-radius: 50px;
+.game-info {
+   /* border-radius: 50px; */
    margin-block-start: 120px;
+   padding: 8px;
+   /* border: 1px solid black; */
+   border-radius: 24px;
+   min-width: 24%;
 }
 
 button.sort-button
@@ -156,13 +164,15 @@ button.sort-button
 {
    width: 100%;
    border-radius: 0px;
-   line-height: 2;
+   line-height: 3;
 }
 
 .move-list-item p
 {
    text-align: center;
    padding-block: 8px;
+   font-weight:600;
+   color:#cdec9fca;
 }
 
 .move-list-item:first-child button
@@ -179,6 +189,10 @@ button.sort-button
 
 @media all and (width < 1036px)
 {
+   body {
+      width: auto;
+      margin: 0;
+   }
    .game
    {
       max-width: 100%;
@@ -190,6 +204,14 @@ button.sort-button
    {
       width: 60%;
    }
+
+   .game-info {
+      margin-block-start: 0;
+      min-width: 64%;
+   }
+   .moves-list {
+      width: max-content;
+   }
 }
 
 @media all and (width < 800px)
@@ -197,12 +219,18 @@ button.sort-button
    .game-board
    {
       width: 100%;
+      padding-inline: 20px;
    }
 }
 
 @media all and (width < 540px)
 {
-
+   .game {
+      gap: 20px;
+   }
+   .game-board {
+      padding-inline: 10px;
+   }
    .board-container,
    .game-info
    {
@@ -214,10 +242,17 @@ button.sort-button
       height: auto;
    }
 
+   .game-info {
+      margin-block-start: 0;
+   }
+
    .square
    {
       display: inline-block;
-      /* height: 1rem; */
       width: 33%;
+   }
+   
+   .move-list-item button {
+      padding: 2rem 1rem;
    }
 }

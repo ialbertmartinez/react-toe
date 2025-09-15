@@ -146,7 +146,7 @@ export default function Game() {
         </li>
       );
     }
-    description = move > 0 ? `Go to move #${move}` : 'Go to game start'; 
+    description = move > 0 ? `Go to move #${move}` : 'Go to start'; 
 
     return (
       <li className="move-list-item" key={move}>
@@ -165,12 +165,12 @@ export default function Game() {
       </div> 
       {/* /.game-board */}
       <div className="game-info">
-        <button className="sort-button"
-          onClick={() => setIsSortAscending(!isSortAscending)}
-        >
-          Sort {isSortAscending ? 'descending' : 'ascending'}
-        </button>
         <ol className="move-list">
+          <button className="sort-button"
+            onClick={() => setIsSortAscending(!isSortAscending)}
+          >
+            Sort {isSortAscending ? 'descending' : 'ascending'}
+          </button>
           {sortedMoves}
         </ol>
       </div>
