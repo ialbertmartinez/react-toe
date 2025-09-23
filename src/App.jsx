@@ -1,12 +1,12 @@
 // created using latest vite and react (V 19.1.1).
 // Starter code came from React.dev's tic-tac-toe tutorial boilerplate starter code. Then customized and added some flare
 import React, { useState } from 'react';
-import './App.css';
+import './app.css';
 
 function Square({value, onSquareClick, isWinning}) {
   return (
     <button 
-      className={`square ${isWinning ? 'winning-square' : ''}`} 
+      className={`square${isWinning ? ' winning-square' : ''}`} 
       onClick={onSquareClick}
     >
       {value}
@@ -65,12 +65,12 @@ function Board({xIsNext, squares, onPlay}) {
     ));
   return (
     <>
-      <header className="status">
-        <h1>Re-Ac-Toe</h1>
-        <p className="subheader">tic-tac-toe made w/ React</p>
-        <p>{status}</p>
+      <header className="text-center m-8 status">
+        <h1 className="text-[3rem] text-white leading-[1] font-black">Re-Ac-Toe</h1>
+        <p className="text-white small-caps mb-[40px]">tic-tac-toe made w/ React</p>
+        <p className="text-white font-bold">{status}</p>
       </header>
-      <div className="board-container">
+      <div className={`flex flex-col flex-nowrap box-border rounded-[50px] shadow-[0_4px_4px_rgba(255,255,255,0.3)] my-10 w-full h-[500px] board-container${status.includes("Win") ? " celebrate-win" : ''}`}>
         {boardRows}
       </div>
       {/* <div className="board-row">
@@ -142,7 +142,7 @@ export default function Game() {
       description = `You are at move #${move}`;
       return (
         <li className="move-list-item" key={move}>
-          <p>{description}</p>
+          <p className="font-bold text-white/90">{description}</p>
         </li>
       );
     }
@@ -151,7 +151,10 @@ export default function Game() {
     return (
       <li className="move-list-item" key={move}>
         {/* <p>You are at move # {move}</p> */}
-        <button onClick={() => jumpTo(move)}>
+        <button 
+          onClick={() => jumpTo(move)}
+          className="bg-[#141414] text-[#05df72] font-light"  
+        >
           {description}
         </button>
       </li>
@@ -159,14 +162,15 @@ export default function Game() {
   });
   const sortedMoves = isSortAscending ? moves : [...moves].reverse();
   return (
-    <div className="game">
-      <div className="game-board">
+    <div className="w-[1000px] h-[1000px] gap-20 flex items-start game">
+      <div className="w-3/5 game-board">
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div> 
       {/* /.game-board */}
-      <div className="game-info">
+      <div className="game-info gap-[40px]">
         <ol className="move-list">
-          <button className="sort-button"
+          <button className="sort-button px-[8px] py-[16px] mb-[40px] text-center bg-transparent border-2 border-solid 
+          text-green-400 hover:bg-green-400 hover:text-black"
             onClick={() => setIsSortAscending(!isSortAscending)}
           >
             Sort {isSortAscending ? 'descending' : 'ascending'}
