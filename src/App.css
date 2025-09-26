@@ -3,9 +3,7 @@
    --shadow-color: 0deg 0% 4%;
 }
 
-*,
-*::before,
-*::after
+*
 {
    box-sizing: border-box;
 }
@@ -51,7 +49,6 @@ body {
 
 .status
 {
-   /* margin-block-start: 20px; */
    text-align: center;
 }
 
@@ -69,29 +66,29 @@ body {
    padding: 0;
 }
 
-.square:hover:not([class*="winning-square"])
+.square:hover
 {
    box-shadow: var(--shadow-elevation-low);
 
 }
 
 /* ROUNDED CORNERS FOR GAME BOARD */
-div.flex:first-child>.square:nth-child(1)
+div.flex:first-child > .square:nth-child(1)
 {
    border-top-left-radius: 50px;
 }
 
-div.flex:first-child>.square:nth-child(3)
+div.flex:first-child > .square:nth-child(3)
 {
-   border-top-riGht-radius: 50px;
+   border-top-right-radius: 50px;
 }
 
-div.flex:last-child>.square:nth-child(1)
+div.flex:last-child > .square:nth-child(1)
 {
    border-bottom-left-radius: 50px;
 }
 
-div.flex:last-child>.square:nth-child(3)
+div.flex:last-child > .square:nth-child(3)
 {
    border-bottom-right-radius: 50px;
 }
@@ -107,7 +104,6 @@ div.flex:last-child>.square:nth-child(3)
 }
 
 .game-info {
-   /* border-radius: 50px; */
    margin-block-start: 120px;
    padding: 8px;
    gap: 40px;
@@ -132,7 +128,6 @@ button.sort-button
    list-style-type: none;
 }
 
-.move-list-item p,
 .move-list-item button
 {
    width: 100%;
@@ -140,12 +135,14 @@ button.sort-button
    line-height: 3;
 }
 
-.move-list-item button:hover {
+.move-list-item:hover button:hover {
    box-shadow: inset var(--color-green-400) 20px 0 10px -10px;
    color: white;
 }
+
 .move-list-item p
 {
+   line-height: 3;
    text-align: center;
    padding-block: 8px;
    font-weight:600;
@@ -187,9 +184,6 @@ button.sort-button
    .game-info {
       margin-block-start: 0;
       min-width: 64%;
-   }
-   .moves-list {
-      width: max-content;
    }
 }
 

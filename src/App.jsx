@@ -1,13 +1,16 @@
 // created using latest vite and react (V 19.1.1).
 // Starter code came from React.dev's tic-tac-toe tutorial boilerplate starter code. Then customized and added some flare
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './app.css';
 
-function Square({value, onSquareClick, isWinning}) {
+function Square({ value, onSquareClick, isWinning, index, disabled }) {
+  const label = `Square ${index + 1}${value ? `, ${value}` : ', empty'}`;
   return (
     <button 
       className={`square${isWinning ? ' winning-square' : ''}`} 
       onClick={onSquareClick}
+      aria-label={label}
+      disabled={disabled}
     >
       {value}
     </button>
@@ -18,6 +21,7 @@ function Board({xIsNext, squares, onPlay}) {
   const winnerInfo = calculateWinner(squares);
   const winner = winnerInfo ? winnerInfo.winner : null;
   const winningLine = winnerInfo ? winnerInfo.line : [];
+  const isWin = Boolean(winner);
 
   function handleClick(i) {
     if (winner || squares[i]) {
@@ -57,6 +61,8 @@ function Board({xIsNext, squares, onPlay}) {
                 value={squares[squareIndex]}
                 onSquareClick={() => handleClick(squareIndex)}
                 isWinning={winningLine.includes(squareIndex)}
+                index={squareIndex}
+                disabled={Boolean(winner) || Boolean(squares[squareIndex])}
             />
             );
           })
@@ -68,53 +74,11 @@ function Board({xIsNext, squares, onPlay}) {
       <header className="text-center m-8 status">
         <h1 className="text-[3rem] text-white leading-[1] font-black">Re-Ac-Toe</h1>
         <p className="text-white small-caps mb-[40px]">tic-tac-toe made w/ React</p>
-        <p className="text-white font-bold">{status}</p>
+        <p className="text-white font-bold" role="status" aria-live="polite">{status}</p>
       </header>
-      <div className={`flex flex-col flex-nowrap box-border rounded-[50px] shadow-[0_4px_4px_rgba(255,255,255,0.3)] my-10 w-full h-[500px] board-container${status.includes("Win") ? " celebrate-win" : ''}`}>
+      <div className={`flex flex-col flex-nowrap box-border rounded-[50px] shadow-[0_4px_4px_rgba(255,255,255,0.3)] my-10 w-full h-[500px] board-container${isWin ? ' celebrate-win' : ''}`}>
         {boardRows}
       </div>
-      {/* <div className="board-row">
-        <Square
-          value={squares[0]}
-          onSquareClick={() => handleClick(0)} 
-        />
-        <Square
-          value={squares[1]}
-          onSquareClick={() => handleClick(1)} 
-        />
-        <Square
-          value={squares[2]}
-          onSquareClick={() => handleClick(2)} 
-        />
-      </div>
-      <div className="board-row">
-        <Square
-          value={squares[3]}
-          onSquareClick={() => handleClick(3)} 
-        />
-        <Square
-          value={squares[4]}
-          onSquareClick={() => handleClick(4)} 
-        />
-        <Square
-          value={squares[5]}
-          onSquareClick={() => handleClick(5)} 
-        />
-      </div>
-      <div className="board-row">
-        <Square
-          value={squares[6]}
-          onSquareClick={() => handleClick(6)} 
-        />
-        <Square
-          value={squares[7]}
-          onSquareClick={() => handleClick(7)} 
-        />
-        <Square
-          value={squares[8]}
-          onSquareClick={() => handleClick(8)} 
-        />
-      </div> */}
     </>
   );
 }
@@ -168,13 +132,12 @@ export default function Game() {
       </div> 
       {/* /.game-board */}
       <div className="game-info gap-[40px]">
-        <ol className="move-list">
-          <button className="sort-button px-[8px] py-[16px] mb-[40px] text-center bg-transparent border-2 border-solid 
-          text-green-400 hover:bg-green-400 hover:text-black"
+        <button className="sort-button px-[8px] py-[16px] mb-[40px] text-center bg-transparent border-2 border-solid text-green-400 hover:bg-green-400 hover:text-black"
             onClick={() => setIsSortAscending(!isSortAscending)}
           >
             Sort {isSortAscending ? 'descending' : 'ascending'}
           </button>
+        <ol className="move-list">
           {sortedMoves}
         </ol>
       </div>
